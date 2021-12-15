@@ -27,7 +27,7 @@ test('Checkbox change to checked', () => {
   render(<App />)
   // check that the
   const checkbox = screen.getByRole('checkbox')
-  
+
   fireEvent.click(checkbox)
   expect(checkbox).toBeChecked()
   fireEvent.click(checkbox)
@@ -37,7 +37,7 @@ test('Checkbox change to checked', () => {
 test('Checkbox disables button on first click and enables on second', () => {
   render(<App />)
   const colorButton = screen.getByRole('button', { name: 'Change to blue' })
-  const checkbox = screen.getByRole('checkbox')
+  const checkbox = screen.getByRole('checkbox', { name: 'Disable button' })
 
   fireEvent.click(checkbox)
   expect(colorButton).toBeDisabled()

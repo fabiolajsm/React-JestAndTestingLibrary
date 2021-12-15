@@ -16,7 +16,7 @@ function App() {
         Change to {newButtonColor}
       </button>
       <input
-        id="enable-button-checkbox"
+        id="disable-button-checkbox"
         type="checkbox"
         value={disabled}
         arial-checked={disabled}
@@ -24,6 +24,7 @@ function App() {
           setDisabled(e.target.checked)
         }}
       />
+      <label htmlFor="disable-button-checkbox">Disable button</label>
     </div>
   )
 }
