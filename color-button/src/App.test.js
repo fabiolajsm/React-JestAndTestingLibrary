@@ -5,7 +5,9 @@ import { replaceCamelCaseWithSpaces } from './App'
 test('button has correct initial color', () => {
   render(<App />)
   // find an element with a role of button and text of "Change to blue"
-  const colorButton = screen.getByRole('button', { name: 'Change to MidnigthBlue' })
+  const colorButton = screen.getByRole('button', {
+    name: 'Change to MidnigthBlue',
+  })
   expect(colorButton).toHaveStyle({ backgroundColor: 'MediumVioletRed' })
   // click button
   fireEvent.click(colorButton)
@@ -16,7 +18,9 @@ test('button has correct initial color', () => {
 
 test('initial conditions', () => {
   render(<App />)
-  const colorButton = screen.getByRole('button', { name: 'Change to MidnigthBlue' })
+  const colorButton = screen.getByRole('button', {
+    name: 'Change to MidnigthBlue',
+  })
   // check that the button starts out enabled
   expect(colorButton).toBeEnabled()
   // check that the checkbox starts out unchecked
@@ -37,7 +41,9 @@ test('Checkbox change to checked', () => {
 
 test('Checkbox disables button on first click and enables on second', () => {
   render(<App />)
-  const colorButton = screen.getByRole('button', { name: 'Change to MidnigthBlue' })
+  const colorButton = screen.getByRole('button', {
+    name: 'Change to MidnigthBlue',
+  })
   const checkbox = screen.getByRole('checkbox', { name: 'Disable button' })
 
   fireEvent.click(checkbox)
