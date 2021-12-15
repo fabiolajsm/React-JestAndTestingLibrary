@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import App from './App'
+import { replaceCamelCaseWithSpaces } from './App'
 
 test('button has correct initial color', () => {
   render(<App />)
@@ -60,4 +61,20 @@ test('Button change color to gray when is disabled', () => {
   expect(button).toHaveStyle({ backgroundColor: 'gray' })
   fireEvent.click(checkbox)
   expect(button).toHaveStyle({ backgroundColor: 'blue' })
+})
+
+// Unit testing example with medium violet red and midnigth blue
+// We are going to combine the tests in a describe statement(Ds: way of grouping tests)
+describe('Spaces before camelCase capital letters', () => {
+  test('Works for no inner capital letters', () => {
+    expect(replaceCamelCaseWithSpaces('Red')).toBe('Red')
+  })
+  test('Works for one inner capital letter', () => {
+    expect(replaceCamelCaseWithSpaces('MidnigthBlue')).toBe('Midnigth Blue')
+  })
+  test('Works for multiple inner capital letters', () => {
+    expect(replaceCamelCaseWithSpaces('MediumVioletRed')).toBe(
+      'Medium Violet Red',
+    )
+  })
 })
