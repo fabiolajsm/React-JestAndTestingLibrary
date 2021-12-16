@@ -1,0 +1,11 @@
+{
+  "eslint.options": {
+    "configFile": ".eslint.json"
+  },
+  "eslint.validate": ["javascript", "javascriptreact"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+  // "editor.defaultFormatter": "esbenp.prettier-vscode",=> for ESlint is not anymore like this, "Value is not valid"
+  // "editorformatOnSave": true
+}
