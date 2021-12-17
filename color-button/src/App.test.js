@@ -13,7 +13,7 @@ test('button has correct initial color', () => {
   fireEvent.click(colorButton)
 
   expect(colorButton).toHaveStyle({ backgroundColor: 'MidnigthBlue' })
-  expect(colorButton.textContent).toBe('Change to MediumVioletRed')
+  expect(colorButton.toHaveTextContent).toBe('Change to MediumVioletRed')
 })
 
 test('initial conditions', () => {
