@@ -57,20 +57,15 @@ test('update toppings subtotal when toppings change', async () => {
 })
 
 describe('Grand total', () => {
-  test('Initial condition is zero', () => {
+  test('grand total updates properly if scoop is added first', async () => {
     render(<OrderEntry />)
+    // check initial condition zero
     const grandTotal = screen.getByRole('heading', {
       name: /grand total: \$/i,
       exact: false,
     })
     expect(grandTotal).toHaveTextContent('0.00')
-  })
 
-  test('grand total updates properly if scoop is added first', async () => {
-    render(<OrderEntry />)
-    const grandTotal = screen.getByRole('heading', {
-      name: /grand total: \$/i,
-    })
     // added a scoop
     const vanillaInput = await screen.findByRole('spinbutton', {
       name: 'Vanilla',
