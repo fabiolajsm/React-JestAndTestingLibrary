@@ -16,7 +16,7 @@ test('handles error for scoops and toppings routes', async () => {
       res(ctx.status(500)),
     ),
   )
-  render(<OrderEntry />)
+  render(<OrderEntry />) // if this was with type/typescript... and you only need to skip that error use jest.fn()
 
   await waitFor(async () => {
     const alerts = await screen.findAllByRole('alert')
