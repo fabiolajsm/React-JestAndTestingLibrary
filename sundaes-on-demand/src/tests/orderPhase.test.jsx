@@ -66,6 +66,10 @@ test('order phases for happy path', async () => {
   // })                             ===> Dont take the button when are multiple buttons?? find this!!
   userEvent.click(confirmOrderButton)
 
+  // Loading to show on confirmation page
+  const loading = screen.getByText(/loading.../i)
+  expect(loading).toBeInTheDocument()
+
   // confirm order number on confirmation page
   const orderNumber = await screen.findByText(/order number/i)
   expect(orderNumber).toBeInTheDocument()
@@ -74,6 +78,10 @@ test('order phases for happy path', async () => {
     name: /thank you/i,
   })
   expect(thankYouHeader).toBeInTheDocument()
+
+  // Loading disappears
+  const notLoading = screen.queryByText(/loading.../i)
+  expect(notLoading).not.toBeInTheDocument()
 
   // click "new order" button on confirmation page
   const newOrderButton = screen.getByRole('button', {
@@ -90,4 +98,31 @@ test('order phases for happy path', async () => {
   // happening after test is over
   await screen.findByRole('spinbutton', { name: 'Vanilla' })
   await screen.findByRole('checkbox', { name: 'Cherries' })
+})
+
+test('Toppings header is not on summary page if no toppings ordered', async () => {
+  // render app
+  render(<App />)
+  // add ice cream scoops and toppings
+  const vanillaInput = await screen.findByRole('spinbutton', {
+    name: 'Vanilla',
+  })
+  userEvent.clear(vanillaInput)
+  userEvent.type(vanillaInput, '1')
+
+  const chocolateInput = screen.getByRole('spinbutton', { name: 'Chocolate' })
+  userEvent.clear(chocolateInput)
+  userEvent.type(chocolateInput, '2')
+
+  // find and click order summary button
+  const orderSummaryButton = screen.getByRole('button', {
+    name: /order sundae/i,
+  })
+  userEvent.click(orderSummaryButton)
+
+  const scoopsHeading = screen.getByRole('heading', { name: 'Scoops: $6.00' })
+  expect(scoopsHeading).toBeInTheDocument()
+
+  const toppingsHeading = screen.queryByRole('heading', { name: /toppings/i })
+  expect(toppingsHeading).not.toBeInTheDocument()
 })
