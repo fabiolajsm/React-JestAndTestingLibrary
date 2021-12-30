@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import ButtonGroup from 'react-bootstrap/Button'
 import Popover from 'react-bootstrap/Popover'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 
@@ -39,9 +40,14 @@ export default function SummaryForm({ setOrderPhase }) {
           label={checkboxLabel}
         />
       </Form.Group>
-      <Button variant="primary" type="submit" disabled={!tcChecked}>
-        Confirm order
-      </Button>
+      <ButtonGroup disabled={!tcChecked}>
+        <Button variant="primary" type="submit" name="confirm order">
+          Confirm order
+        </Button>
+        <Button variant="primary" onClick={() => setOrderPhase('in progress')}>
+          Cancel
+        </Button>
+      </ButtonGroup>
     </Form>
   )
 }
